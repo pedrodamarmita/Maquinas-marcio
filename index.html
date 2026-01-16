@@ -17,21 +17,131 @@
     fbq('init', 'SEU_PIXEL_ID_AQUI');
     fbq('track', 'PageView');
   </script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      color: #000;
+      max-width: 460px;
+      width: 100%;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #ddd;
+      margin: 25px 0;
+    }
+
+    .option {
+      text-align: left;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    .option input {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #222;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
 </head>
 
-<body style="font-family: Arial; text-align: center; padding: 40px;">
+<body>
 
-  <h1>Conserto de Máquinas de Marcenaria</h1>
-  <p>Atendimento rápido e profissional<br>
-     Máquinas industriais e manuais</p>
+  <div class="container">
+    <h1>Conserto de Máquinas de Marcenaria</h1>
+    <p class="subtitle">
+      Atendimento técnico profissional<br>
+      Máquinas industriais e manuais
+    </p>
 
-  <a href="https://wa.me/5547991959797"
-     onclick="fbq('track','Contact');"
-     style="background:green;color:white;
-     padding:15px 25px;text-decoration:none;
-     border-radius:8px;font-size:18px;">
-     Falar agora no WhatsApp
-  </a>
+    <div class="divider"></div>
+
+    <p><strong>Qual a prioridade do seu atendimento?</strong></p>
+
+    <div class="option">
+      <label>
+        <input type="radio" name="prioridade" value="URGENTE" checked>
+        Urgente — máquina parada
+      </label>
+    </div>
+
+    <div class="option">
+      <label>
+        <input type="radio" name="prioridade" value="FLEXÍVEL">
+        Flexível — posso agendar
+      </label>
+    </div>
+
+    <button class="btn" onclick="enviarWhatsApp()">
+      Falar com o Márcio no WhatsApp
+    </button>
+
+    <div class="footer">
+      Serviço técnico • Confiança • Agilidade
+    </div>
+  </div>
+
+  <script>
+    function enviarWhatsApp() {
+      const prioridade = document.querySelector('input[name="prioridade"]:checked').value;
+      const mensagem = `Olá, preciso de conserto em máquina de marcenaria.%0APrioridade do atendimento: ${prioridade}`;
+
+      fbq('track', 'Contact');
+
+      window.location.href = `https://wa.me/5547991959797?text=${mensagem}`;
+    }
+  </script>
 
 </body>
 </html>
+
